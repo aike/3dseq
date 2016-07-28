@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>3D Sequencer</title>
+
+    <script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
+    <script type="text/javascript" src="js/three.min.js"></script>
+    <script type="text/javascript" src="js/ThreePiece2.js"></script>
+    <script type="text/javascript" src="js/sampler.js"></script>
+    <script type="text/javascript" src="js/shortcuts.js"></script>
+
+<script id="vertexShader" type="x-shader/x-vertex">
+uniform vec3 viewVector;
+uniform float c;
+uniform float p;
+varying float intensity;
+void main() 
+{
+    vec3 vNormal = normalize( normalMatrix * normal );
+    intensity = pow( c - dot(vNormal, normalize(cameraPosition)), p );
+    
+    gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+}
+</script>
+
+<!-- fragment shader a.k.a. pixel shader -->
+<script id="fragmentShader" type="x-shader/x-vertex"> 
+uniform vec3 glowColor;
+varying float intensity;
+void main() 
+{
+    vec3 glow = glowColor * intensity;
+    gl_FragColor = vec4( glow, 1.0 );
+}
+</script>
+
+    <script type="text/javascript" src="gui.js"></script>
+    <script type="text/javascript" src="player.js"></script>
+    <script type="text/javascript" src="pattern.js"></script>
+    <script type="text/javascript" src="sequencer.js"></script>
+
+
+</head>
+<body style="background-color:#000;">
+    <div id="draw" style="margin:0 auto;"></div>
+</body>
+</html>
