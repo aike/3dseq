@@ -1,4 +1,5 @@
 var t;
+var gui;
 
 $(function(){
 	console.log('hello world');
@@ -23,13 +24,17 @@ $(function(){
 		return rgb[0] * 0x10000 + rgb[1] * 0x100 + rgb[2];
 	};
 
+var GUI = function() {
 
+};
+
+//GUI.prototype.init() = function() {
 
 	t = new ThreePiece('draw');
 
 	var dx = 16;
-	var dy = 4;
-	var dz = 8;
+	var dy = 1;//4;
+	var dz = 4;//8;
 
 	var sx = 1.0;
 	var sy = 1.8;
@@ -157,3 +162,5 @@ $(function(){
 	}, false );
 
 });
+
+

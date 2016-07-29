@@ -19,11 +19,26 @@ var gNoteLen = Math.floor(60 * 1000 / (4 * gBpm));
 
 $(function() {
 	var rotating = false;
+
+// 1-8のキーは、trackのOn/Offがよさそう
+// シーン切り替えは Z X C V
+
+
 /*
-	shortcut.add("1",function() { selScene(0); });
-	shortcut.add("2",function() { selScene(1); });
-	shortcut.add("3",function() { selScene(2); });
-	shortcut.add("4",function() { selScene(3); });
+
+	shortcut.add("1",function() { toggleTrack(0); });
+	shortcut.add("2",function() { toggleTrack(1); });
+	shortcut.add("3",function() { toggleTrack(2); });
+	shortcut.add("4",function() { toggleTrack(3); });
+	shortcut.add("5",function() { toggleTrack(4); });
+	shortcut.add("6",function() { toggleTrack(5); });
+	shortcut.add("7",function() { toggleTrack(6); });
+	shortcut.add("8",function() { toggleTrack(7); });
+
+	shortcut.add("z",function() { selScene(0); });
+	shortcut.add("x",function() { selScene(1); });
+	shortcut.add("c",function() { selScene(2); });
+	shortcut.add("v",function() { selScene(3); });
 
 
 	shortcut.add("l",function() { showSelectedScene(); });
@@ -38,8 +53,16 @@ $(function() {
 		rotating = !rotating;
 	});
 
-	shortcut.add(" ",function() { gBeat = 0; gPlay = true; });
-	shortcut.add("esc",function() { gPlay = false; });
+	shortcut.add(" ",function() { 
+		if (!gPlay) {
+			gBeat = 0;
+			gPlay = true;
+		}
+	});
+
+	shortcut.add("esc",function() {
+		gPlay = false;
+	});
 
 	var player = new Player();
 	player.init();
