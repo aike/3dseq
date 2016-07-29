@@ -67,6 +67,11 @@ $(function() {
 	var player = new Player();
 	player.init();
 
+	var gui = new GUI();
+	gui.init();
+
+	//////////////////////////////////////
+
 	var sequencer = function() {
 
 		var play = function() {
@@ -76,6 +81,7 @@ $(function() {
 						player.noteOn(tr, pat[gScene][tr][gBeat]);
 					}
 				}
+				gui.setCursor(0, gBeat);
 			}
 
 			gBeat++;
