@@ -77,8 +77,9 @@ Sampler.prototype.setPan = function(val) {
 		this.pan.setPosition(0, 0, -1.0);
 };
 
-Sampler.prototype.noteOn = function() {
+Sampler.prototype.noteOn = function(velocity) {
 	this.src = this.ctx.createBufferSource();
+	this.setVolume(velocity);
 	if (!this.src.noteOn)
 		this.src.noteOn = this.src.start;
 	if (this.sample.buffer != null) {
