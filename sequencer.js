@@ -21,6 +21,8 @@ var gNoteLen = Math.floor(60 * 1000 / (4 * gBpm));
 
 var gui;
 
+var gOneScene = true;
+
 $(function() {
 	var rotating = false;
 
@@ -35,18 +37,18 @@ $(function() {
 	shortcut.add("4",function() { gNextTrack[3] = true; });
 	shortcut.add("5",function() { gNextTrack[4] = true; });
 	shortcut.add("6",function() { gNextTrack[5] = true; });
-/*	shortcut.add("6",function() { toggleTrack(5); });
-	shortcut.add("7",function() { toggleTrack(6); });
-	shortcut.add("8",function() { toggleTrack(7); });
-*/
+	shortcut.add("7",function() { gNextTrack[6] = true; });
+	shortcut.add("8",function() { gNextTrack[7] = true; });
+
 	shortcut.add("z",function() { gNextScene = 0; });
 	shortcut.add("x",function() { gNextScene = 1; });
 	shortcut.add("c",function() { gNextScene = 2; });
 	shortcut.add("v",function() { gNextScene = 3; });
 
-/*
-	shortcut.add("l",function() { showSelectedScene(); });
-*/
+
+	shortcut.add("s",function() { gOneScene = true;  gui.showSelectedLayer(); });
+	shortcut.add("a",function() { gOneScene = false; gui.showAllLayers(); });
+
 
 	shortcut.add("r",function() {
 		if (!rotating) {
@@ -79,6 +81,10 @@ $(function() {
 	gui.init();
 
 	gui.setSequence(pat);
+	gui.setInitTrack(trk);
+	if (gOneScene) {
+		gui.showSelectedLayer();
+	}
 
 	//////////////////////////////////////
 
@@ -100,8 +106,12 @@ $(function() {
 					gBar++;
 					gBeat = 0;
 
+					var oScene = gScene;
 					gScene = gNextScene;
 					gui.selectLayer(gScene);
+					if (gOneScene && (oScene != gScene)) {
+						gui.showSelectedLayer();
+					}
 
 					for (var i = 0; i < 8; i++) {
 						if (gNextTrack[i]) {

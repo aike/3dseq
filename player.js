@@ -29,14 +29,16 @@ Player.prototype.init = function() {
 
 	this.synth1 = new Sampler(ctx, 'wav/synth1.wav');
 	this.synth1.connect(ctx.destination);
-	this.synth2 = new Sampler(ctx, 'wav/synth2.wav');
-	this.synth2.connect(ctx.destination);
+	this.synthGm = new Sampler(ctx, 'wav/synthGm.wav');
+	this.synthGm.connect(ctx.destination);
 	this.perc1 = new Sampler(ctx, 'wav/perc1.wav');
 	this.perc1.connect(ctx.destination);
 	this.seq = new Sampler(ctx, 'wav/seq.wav');
 	this.seq.connect(ctx.destination);
 	this.bass = new Sampler(ctx, 'wav/bass.wav');
 	this.bass.connect(ctx.destination);
+	this.bassGm = new Sampler(ctx, 'wav/bassGm.wav');
+	this.bassGm.connect(ctx.destination);
 }
 
 Player.prototype.noteOn = function(inst, velocity) {
@@ -58,6 +60,12 @@ Player.prototype.noteOn = function(inst, velocity) {
 			break;
 		case 5:
 			this.synth1.noteOn(velocity);
+			break;
+		case 6:
+			this.bassGm.noteOn(velocity);
+			break;
+		case 7:
+			this.synthGm.noteOn(velocity);
 			break;
 		case 6:
 		case 7:

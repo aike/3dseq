@@ -29,8 +29,8 @@ GUI.prototype.init = function() {
 	t = new ThreePiece('draw');
 
 	this.dx = 16;
-	this.dy = 2; this.dz = 6;
-//	this.dy = 4; this.dz = 8;
+//	this.dy = 2; this.dz = 8;
+	this.dy = 4; this.dz = 8;
 
 	this.ox = 0;
 	this.oy = 0;
@@ -163,14 +163,14 @@ GUI.prototype.showSelectedLayer = function() {
 		this.showLayer[i] = false;
 	}
 	this.showLayer[gScene] = true;
-	updateView();
+	this.updateView();
 }
 
 GUI.prototype.showAllLayers = function() {
 	for (var i = 0; i < this.dy; i++) {
 		this.showLayer[i] = true;
 	}
-	updateView();
+	this.updateView();
 }
 
 GUI.prototype.toggleTrack = function(y, tr) {
@@ -187,17 +187,34 @@ GUI.prototype.toggleTrack = function(y, tr) {
 	}
 } 
 
-GUI.prototype.updateView = function() {
-	for (var i = 0; i < this.dy; i++) {
-		this.showTrack[i] = new Array(this.dz);
-		for (var j = 0; j < this.dz; j++) {
-			this.showTrack[i][j] = true;
-			if (this.showLayer[i] && this.showTrack[i][j]) {
+GUI.prototype.setInitTrack = function(tr) {
+	for (var y = 0; y < this.dy; y++) {
+		for (var z = 0; z < this.dz; z++) {
+			this.showTrack[y][z] = tr[y][z];
+			var b = this.showTrack[y][z];
+			for (var x = 0; x < this.dx; x++) {
 				var s = "" + x + "-" + y + "-" + z;
-				t.obj(s      ).material.visible = true;
-				t.obj(s + "b").material.visible = true;
+				t.obj(s      ).material.visible = b;
+				t.obj(s + "b").material.visible = false;
+			}
+		}
+	}
+
+} 
+
+
+GUI.prototype.updateView = function() {
+	for (var y = 0; y < this.dy; y++) {
+		for (var z = 0; z < this.dz; z++) {
+			var b;
+			if (this.showLayer[y] && this.showTrack[y][z]) {
+				b = true;
 			} else {
-				t.obj(s      ).material.visible = false;
+				b = false;
+			}
+			for (var x = 0; x < this.dx; x++) {
+				var s = "" + x + "-" + y + "-" + z;
+				t.obj(s      ).material.visible = b;
 				t.obj(s + "b").material.visible = false;
 			}
 		}
