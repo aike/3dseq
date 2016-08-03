@@ -98,14 +98,7 @@ GUI.prototype.init = function() {
 
 	t.eval(data);
 
-	// 全ブルームを消す
-    for (var z = 0; z < this.dz; z++) {
-	    for (var y = 0; y < this.dy; y++) {
-		    for (var x = 0; x < this.dx; x++) {
-				t.obj("" + x + "-" + y + "-" + z + "b").material.visible = false;
-			}
-		}
-	}
+	this.hideCursor();
 
 	// resize callback
 	var fitToWindow = function() {
@@ -126,6 +119,8 @@ GUI.prototype.init = function() {
 	}, false );
 }
 
+
+
 GUI.prototype.setCursor = function(y, x) {
 	for (var z = 0; z < this.dz; z++) {
 		t.obj("" + this.ox + "-" + this.oy + "-" + z + "b").material.visible = false;
@@ -139,6 +134,17 @@ GUI.prototype.setCursor = function(y, x) {
 
 	this.ox = x;
 	this.oy = y;
+}
+
+GUI.prototype.hideCursor = function() {
+	// 全ブルームを消す
+    for (var z = 0; z < this.dz; z++) {
+	    for (var y = 0; y < this.dy; y++) {
+		    for (var x = 0; x < this.dx; x++) {
+				t.obj("" + x + "-" + y + "-" + z + "b").material.visible = false;
+			}
+		}
+	}
 }
 
 GUI.prototype.setSequence = function(seq) {

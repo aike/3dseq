@@ -120,6 +120,8 @@ $(function() {
 						}
 					}
 				}
+			} else {
+				gui.hideCursor();
 			}
 
 			setTimeout(play, gNoteLen);
