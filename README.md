@@ -20,6 +20,7 @@ https://www.youtube.com/watch?v=M5l1q8jTTBA
 [Z][X][C][V]　シーンの切り替え  
 [A]　全シーン表示  
 [S]　選択されたシーンのみ表示
+[R]　回転開始・停止s
 
 ## WEBSITE
 http://github.com/aike/3dseq
