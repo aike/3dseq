@@ -4,9 +4,14 @@
 横方向が時間、奥行きが楽器、高さがシーンを表します。
 Web Music Hackathon #5で作ったものです。
 
+![screenshot](ss.png)
+
 ## Live Demo
 http://aikelab.net/3dseq  
 ※重いです！
+
+## Movie
+https://www.youtube.com/watch?v=M5l1q8jTTBA
 
 ## キーアサイン
 [SPACE]　スタート・停止  
