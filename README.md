@@ -19,8 +19,8 @@ https://www.youtube.com/watch?v=M5l1q8jTTBA
 [1][2][3][4][5][6][7][8]　楽器のON/OFF  
 [Z][X][C][V]　シーンの切り替え  
 [A]　全シーン表示  
-[S]　選択されたシーンのみ表示
-[R]　回転開始・停止s
+[S]　選択されたシーンのみ表示  
+[R]　回転開始・停止
 
 ## WEBSITE
 http://github.com/aike/3dseq
